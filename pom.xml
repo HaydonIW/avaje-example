@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>avaje-example-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>avaje-example-api</module>
+        <module>avaje-example-javalin</module>
+        <module>avaje-example-service</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <dependency.avaje.config.version>2.4</dependency.avaje.config.version>
+        <dependency.avaje.inject.version>8.12-RC1</dependency.avaje.inject.version>
+        <dependency.avaje.jsonb.version>1.1</dependency.avaje.jsonb.version>
+        <dependency.avaje.http.version>1.21</dependency.avaje.http.version>
+
+        <plugin.maven.compiler.version>3.10.1</plugin.maven.compiler.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-config</artifactId>
+                <version>${dependency.avaje.config.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-inject</artifactId>
+                <version>${dependency.avaje.inject.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-jsonb</artifactId>
+                <version>${dependency.avaje.jsonb.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-http-client</artifactId>
+                <version>${dependency.avaje.http.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-http-api</artifactId>
+                <version>${dependency.avaje.http.version}</version>
+            </dependency>
+
+            <!-- Annotation Processors -->
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-inject-generator</artifactId>
+                <version>${dependency.avaje.inject.version}</version>
+
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-jsonb-generator</artifactId>
+                <version>${dependency.avaje.jsonb.version}</version>
+
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-http-client-generator</artifactId>
+                <version>${dependency.avaje.http.version}</version>
+
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.avaje</groupId>
+                <artifactId>avaje-http-javalin-generator</artifactId>
+                <version>${dependency.avaje.http.version}</version>
+
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${plugin.maven.compiler.version}</version>
+
+                    <configuration>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>io.avaje</groupId>
+                                <artifactId>avaje-inject-generator</artifactId>
+                                <version>${dependency.avaje.inject.version}</version>
+                            </path>
+
+                            <path>
+                                <groupId>io.avaje</groupId>
+                                <artifactId>avaje-jsonb-generator</artifactId>
+                                <version>${dependency.avaje.jsonb.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
